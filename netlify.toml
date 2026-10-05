@@ -1,0 +1,17 @@
+# Static site: no build step, no framework.
+[build]
+  publish = "."
+
+# Images change rarely: cache for a week.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Basic security headers (these do not affect how the site looks or works).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
